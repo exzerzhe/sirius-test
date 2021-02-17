@@ -3,3 +3,9 @@ export type IStars = {
   x: number;
   y: number;
 };
+export type IStarValues = {
+  x: number;
+  y: number;
+  value: number;
+  index: number;
+};

@@ -35,4 +35,4 @@ const Control = () => {
   );
 };
 
-export default React.memo(Control);
+export default Control;

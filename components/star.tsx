@@ -2,14 +2,15 @@ import React from "react";
 import CSS from "csstype";
 import { StarValue } from "../styles";
 import { StarContent } from "../styles";
+import { IStarValues } from "../interfaces";
 
-const Star = (props) => {
+const Star: React.FC<IStarValues> = (props) => {
   const { x, y, value } = props;
   const starStyle: CSS.Properties = {
     backgroundImage: `url('./star2.png')`,
     backgroundSize: "cover",
+    width: "200px",
     height: `200px`,
-    width: `200px`,
     textAlign: "center",
     verticalAlign: "middle",
     lineHeight: "200px",

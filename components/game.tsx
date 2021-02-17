@@ -1,13 +1,12 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
 import { controlOptions, starsState } from "./atom";
-import { STEP, INTERVAL } from "./constants";
+import { INTERVAL, STEP } from "./constants";
 import { createStar } from "./utils";
 import Control from "./controlPanel";
 import Star from "./star";
 import { IStars } from "../interfaces";
-import { Field } from "../styles";
-import { Main } from "../styles";
+import { Field, Main } from "../styles";
 
 const Game: React.FC = () => {
   const [stars, updateStars] = useRecoilState(starsState);
@@ -18,15 +17,10 @@ const Game: React.FC = () => {
 
   const yStep = useCallback(() => {
     updateStars((oldStars: IStars[]) => {
-      const newStars = Array();
-      for (let star of oldStars) {
+      return oldStars.map((star: IStars) => {
         const newY: number = star.y + (STEP * controlState.speed) / 65;
-        newStars.push({
-          ...star,
-          y: newY,
-        });
-      }
-      return newStars;
+        return { ...star, y: newY };
+      });
     });
     requestRef.current = requestAnimationFrame(yStep);
   }, [controlState.speed, updateStars]);
