@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { controlOptions, starsState } from "./atom";
 import { STEP, INTERVAL } from "./constants";
 import { createStar } from "./utils";
-import Control from "./control";
+import Control from "./controlPanel";
 import Star from "./star";
 import { IStars } from "../interfaces";
 import { Field } from "../styles";
@@ -12,9 +12,9 @@ import { Main } from "../styles";
 const Game: React.FC = () => {
   const [stars, updateStars] = useRecoilState(starsState);
   const [controlState] = useRecoilState(controlOptions);
-  const requestRef: any = useRef();
-  const intervalRef: any = useRef();
-  const fieldRef: any = useRef();
+  const requestRef = useRef<number>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval>>(null);
+  const fieldRef = useRef<HTMLDivElement>(null);
 
   const yStep = useCallback(() => {
     updateStars((oldStars: IStars[]) => {
