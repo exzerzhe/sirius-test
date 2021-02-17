@@ -8,8 +8,3 @@ export const createStar = () => {
     y: -200,
   };
 };
-export const removeStar = (stars, index) => {
-  const newStars = [...stars];
-  newStars.splice(index, 1);
-  return newStars;
-};

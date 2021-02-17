@@ -1,37 +1,26 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
-import styled from "@emotion/styled";
-
 import { controlOptions, starsState } from "./atom";
 import { STEP, INTERVAL } from "./constants";
 import { createStar } from "./utils";
-import Control from "./Control";
+import Control from "./control";
 import Star from "./star";
+import { IStars } from "../interfaces";
+import { Field } from "../styles";
+import { Main } from "../styles";
 
-const Main = styled.div({
-  display: "flex",
-  justifyContent: "center",
-});
-const Field = styled.div({
-  height: "100vh",
-  width: "70%",
-  position: "relative",
-  overflowY: "hidden",
-  overflowX: "hidden",
-});
-
-const Game = () => {
+const Game: React.FC = () => {
   const [stars, updateStars] = useRecoilState(starsState);
   const [controlState] = useRecoilState(controlOptions);
-  const requestRef = useRef();
-  const intervalRef = useRef();
-  const fieldRef = useRef();
+  const requestRef: any = useRef();
+  const intervalRef: any = useRef();
+  const fieldRef: any = useRef();
 
   const yStep = useCallback(() => {
-    updateStars((oldStars) => {
-      const newStars = [];
+    updateStars((oldStars: IStars[]) => {
+      const newStars = Array();
       for (let star of oldStars) {
-        const newY = star.y + (STEP * controlState.speed) / 65;
+        const newY: number = star.y + (STEP * controlState.speed) / 65;
         newStars.push({
           ...star,
           y: newY,
@@ -43,7 +32,7 @@ const Game = () => {
   }, [controlState.speed, updateStars]);
 
   const spawnStar = useCallback(() => {
-    updateStars((oldStars) => [...oldStars, createStar()]);
+    updateStars((oldStars: IStars[]) => [...oldStars, createStar()]);
   }, [updateStars]);
 
   useEffect(() => {

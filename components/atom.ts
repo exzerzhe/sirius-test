@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-
+import { IStars } from "../interfaces";
 export const controlOptions = atom({
   key: "controlOptions",
   default: {
@@ -10,5 +10,5 @@ export const controlOptions = atom({
 
 export const starsState = atom({
   key: "starsState",
-  default: [],
+  default: [] as IStars[],
 });

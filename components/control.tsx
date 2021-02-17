@@ -1,17 +1,8 @@
 import React, { useEffect, useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { controlOptions } from "./atom";
-import styled from "@emotion/styled";
-
-const StartButton = styled.button`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-`;
-const ControlPanel = styled.div`
-  position: relative;
-`;
+import { StartButton } from "../styles";
+import { ControlPanel } from "../styles";
 
 const Control = () => {
   const [controlState, setControlState] = useRecoilState(controlOptions);
